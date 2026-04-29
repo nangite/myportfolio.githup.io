@@ -1,16 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Welcome to My Web</title>
-  <!-- FONTS: DM Sans + Fraunces + JetBrains Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,wght@0,700;0,900;1,600;1,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,wght@0,700;0,900;1,600;1,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <style>
+    /* ✅ FIX: proper cursors */
+    input, textarea { cursor: text !important; }
+    button { cursor: pointer !important; }
+    a { cursor: pointer !important; }
+
+    /* ✅ FIX: proj-link must be above the ::before overlay */
+    .proj-link {
+      position: relative;
+      z-index: 2;
+    }
+    /* ✅ FIX: proj::before overlay must not block clicks */
+    .proj::before {
+      pointer-events: none !important;
+    }
+  </style>
 </head>
+
 <body>
 
   <!-- Cursor Label -->
@@ -27,10 +46,8 @@
       <li><a href="#contact" data-cursor="HELLO">Contact</a></li>
     </ul>
     <div class="nav-right">
-      <button class="dark-toggle" id="darkToggle" data-cursor="THEME">
-        <span id="toggleIcon">
-          <i class="fa-solid fa-moon" style="color: rgb(2, 2, 236);"></i>
-        </span>
+      <button class="dark-toggle" id="darkToggle" data-cursor="THEME" aria-label="Switch theme">
+        <span id="toggleIcon"></span>
       </button>
       <a class="nav-cta" href="mailto:nang@gmail.com" data-cursor="EMAIL">Hire Me ↗</a>
     </div>
@@ -46,9 +63,8 @@
       <h1 class="hero-h1">
         <span class="line1">FRONTEND</span>
         <span class="line2">DEV</span>
-        <!--<span class="line3">Sang Samnnag</span> -->
       </h1>
-      <p class="hero-role">IT Student @ <strong>NUM</strong> &nbsp;·&nbsp; HTML &nbsp;·&nbsp; CSS &nbsp;·&nbsp; JS</p>
+      <p class="hero-role">IT Student @ <strong>NUM</strong> &nbsp;·&nbsp; HTML &nbsp;·&nbsp; CSS &nbsp;·&nbsp; JS &nbsp;·&nbsp; PHP</p>
       <p class="hero-bio">
         A dedicated Information Technology student from Phnom Penh.
         I craft clean, responsive web interfaces and am eager to contribute
@@ -57,12 +73,12 @@
       <div class="hero-actions">
         <a class="btn-fill" href="#projects" data-cursor="VIEW">View Projects ↓</a>
         <a class="btn-ghost" href="#contact" data-cursor="HELLO">Contact Me</a>
-        <a class="btn-cv" href="assets/image2.jpeg" download data-cursor="GET CV">⬇ CV</a>
+        <a class="btn-cv" href="assets/cv.pdf" download="Samnang_CV.pdf" data-cursor="GET CV">⬇ CV</a>
       </div>
       <div class="hero-stats">
         <div class="h-stat"><div class="h-stat-n">6+</div><div class="h-stat-l">Months</div></div>
         <div class="h-stat-divider"></div>
-        <div class="h-stat"><div class="h-stat-n">3</div><div class="h-stat-l">Projects</div></div>
+        <div class="h-stat"><div class="h-stat-n">4</div><div class="h-stat-l">Projects</div></div>
         <div class="h-stat-divider"></div>
         <div class="h-stat"><div class="h-stat-n">NUM</div><div class="h-stat-l">University</div></div>
       </div>
@@ -75,7 +91,7 @@
         <div class="profile-ring ring-2"></div>
         <div class="profile-ring ring-3"></div>
         <div class="profile-img-wrap">
-          <img src="assets/imag.png" alt="Kai Zen" class="profile-img"/>
+          <img src="assets/imag.png" alt="Sang Samnang" class="profile-img" />
         </div>
         <div class="profile-badge badge-html">HTML</div>
         <div class="profile-badge badge-css">CSS</div>
@@ -87,7 +103,7 @@
     </div>
   </div>
 
-  <hr class="section-rule"/>
+  <hr class="section-rule" />
 
   <!-- ABOUT -->
   <section id="about">
@@ -97,13 +113,13 @@
       <div class="about-copy">
         <p>Hello! I'm <strong>Sang Samnang</strong>, an Information Technology student at the <strong>National University of Management (NUM)</strong> in Phnom Penh, Cambodia.</p>
         <p>My passion lies in <strong>frontend development</strong> — turning design concepts into pixel-perfect, accessible web experiences. I believe great UI makes technology feel human.</p>
-        <p>I have hands-on experience building responsive websites using <strong>HTML5, CSS3, and JavaScript</strong>. I'm a fast learner who thrives in collaborative environments.</p>
+        <p>I have hands-on experience building responsive websites using <strong>HTML5, CSS3, and JavaScript</strong>, as well as full-stack projects with <strong>PHP & MySQL</strong>. I'm a fast learner who thrives in collaborative environments.</p>
         <p>I'm actively seeking a <strong>Frontend Developer Internship</strong> where I can contribute real value while sharpening my skills.</p>
       </div>
       <div class="about-right">
         <div class="kpi-grid">
           <div class="kpi" data-cursor="CODE"><div class="kpi-n">6+</div><div class="kpi-l">Months Coding</div></div>
-          <div class="kpi" data-cursor="BUILD"><div class="kpi-n">3</div><div class="kpi-l">Live Projects</div></div>
+          <div class="kpi" data-cursor="BUILD"><div class="kpi-n">4</div><div class="kpi-l">Live Projects</div></div>
           <div class="kpi" data-cursor="STUDY"><div class="kpi-n">NUM</div><div class="kpi-l">University</div></div>
           <div class="kpi" data-cursor="MAJOR"><div class="kpi-n">IT</div><div class="kpi-l">Major</div></div>
         </div>
@@ -121,7 +137,7 @@
     </div>
   </section>
 
-  <hr class="section-rule"/>
+  <hr class="section-rule" />
 
   <!-- SKILLS -->
   <section id="skills" class="skills-section">
@@ -130,13 +146,13 @@
     <table class="skills-table">
       <tr>
         <td class="sk-num">01</td>
-        <td class="sk-name">HTML5</td>
+        <td class="sk-name">HTML</td>
         <td class="sk-desc">Semantic structure, accessibility, SEO-friendly markup, forms & validation</td>
         <td class="sk-bar-wrap"><div class="sk-pct">80%</div><div class="sk-bar-bg"><div class="sk-bar-fill" style="width:80%;animation-delay:.1s"></div></div></td>
       </tr>
       <tr>
         <td class="sk-num">02</td>
-        <td class="sk-name">CSS3</td>
+        <td class="sk-name">CSS</td>
         <td class="sk-desc">Flexbox, Grid, custom properties, animations, responsive design</td>
         <td class="sk-bar-wrap"><div class="sk-pct">78%</div><div class="sk-bar-bg"><div class="sk-bar-fill" style="width:78%;animation-delay:.2s"></div></div></td>
       </tr>
@@ -164,6 +180,18 @@
         <td class="sk-desc">Design specs, asset export, design-to-code handoff</td>
         <td class="sk-bar-wrap"><div class="sk-pct">45%</div><div class="sk-bar-bg"><div class="sk-bar-fill" style="width:45%;animation-delay:.6s"></div></div></td>
       </tr>
+      <tr>
+        <td class="sk-num">07</td>
+        <td class="sk-name">PHP</td>
+        <td class="sk-desc">Server-side scripting, form handling, CRUD operations, sessions</td>
+        <td class="sk-bar-wrap"><div class="sk-pct">50%</div><div class="sk-bar-bg"><div class="sk-bar-fill" style="width:50%;animation-delay:.7s"></div></div></td>
+      </tr>
+      <tr>
+        <td class="sk-num">08</td>
+        <td class="sk-name">MySQL</td>
+        <td class="sk-desc">Database design, queries, joins, CRUD with PHP</td>
+        <td class="sk-bar-wrap"><div class="sk-pct">48%</div><div class="sk-bar-bg"><div class="sk-bar-fill" style="width:48%;animation-delay:.8s"></div></div></td>
+      </tr>
     </table>
   </section>
 
@@ -172,38 +200,52 @@
     <div class="s-label">What I've Built</div>
     <div class="s-title">Projects</div>
     <div class="projects-grid">
-      <div class="proj" data-cursor="VIEW →">
+
+      <!-- Project 01 -->
+      <div class="proj">
         <div class="proj-num">/ 01</div>
         <div class="proj-icon"><i class="fa-solid fa-cart-shopping" style="color: rgb(215, 59, 255);"></i></div>
-        <div class="proj-name">KhmerShop Landing</div>
+        <div class="proj-name">Personal Finance Tracker</div>
         <div class="proj-desc">Responsive e-commerce landing page for a Cambodian retail brand. Product cards, hero banner, cart UI and smooth interactions.</div>
-        <div class="proj-tags"><span class="ptag">HTML5</span><span class="ptag">CSS3</span><span class="ptag">JavaScript</span><span class="ptag">Responsive</span></div>
-        <a class="proj-link" href="#">View Project →</a>
+        <div class="proj-tags"><span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">JavaScript</span><span class="ptag">Responsive</span></div>
+        <a class="proj-link" href="https://nangite.github.io/finance-tracker.githup.io/" target="_blank">View Project →</a>
       </div>
-      <div class="proj" data-cursor="VIEW →">
+
+      <!-- Project 02 -->
+      <div class="proj">
         <div class="proj-num">/ 02</div>
-        <div class="proj-icon">
-          <i class="fa-solid fa-cloud-sun-rain" style="color: rgb(80, 59, 255);"></i>
-        </div>
+        <div class="proj-icon"><i class="fa-solid fa-cloud-sun-rain" style="color: rgb(80, 59, 255);"></i></div>
         <div class="proj-name">Weather App</div>
         <div class="proj-desc">Real-time weather app using OpenWeatherMap API. Temperature, humidity, wind speed and 5-day forecast with animations.</div>
         <div class="proj-tags"><span class="ptag">HTML5</span><span class="ptag">CSS3</span><span class="ptag">JavaScript</span><span class="ptag">Fetch API</span></div>
-        <a class="proj-link" href="#">View Project →</a>
+        <!-- ✅ Replace with your real URL -->
+        <a class="proj-link" href="https://www.youtube.com" target="_blank">View Project →</a>
       </div>
-      <div class="proj" data-cursor="VIEW →">
+
+      <!-- Project 03 -->
+      <div class="proj">
         <div class="proj-num">/ 03</div>
-        <div class="proj-icon">
-          <i class="fa-solid fa-book-atlas" style="color: rgb(99, 230, 190);"></i>
-        </div>
-        <div class="proj-name">E-Book Rantal System</div>
+        <div class="proj-icon"><i class="fa-solid fa-book-atlas" style="color: rgb(99, 230, 190);"></i></div>
+        <div class="proj-name">E-Book Rental System</div>
         <div class="proj-desc">Clean productivity app with add, edit, complete and delete tasks. Persists data with localStorage and smooth CSS animations.</div>
         <div class="proj-tags"><span class="ptag">HTML5</span><span class="ptag">CSS3</span><span class="ptag">JavaScript</span><span class="ptag">localStorage</span></div>
-        <a class="proj-link" href="#">View Project →</a>
+        <a class="proj-link" href="#" target="_blank">View Project →</a>
       </div>
+
+      <!-- Project 04 — PHP & MySQL -->
+      <div class="proj">
+        <div class="proj-num">/ 04</div>
+        <div class="proj-icon"><i class="fa-solid fa-database" style="color: rgb(246, 173, 85);"></i></div>
+        <div class="proj-name">E-Book Rental System <span style="font-size:0.7rem;color:var(--neon2);">Full-Stack</span></div>
+        <div class="proj-desc">Full-stack rental system with user login, book browsing, rental management and admin dashboard. Built with PHP & MySQL.</div>
+        <div class="proj-tags"><span class="ptag">PHP</span><span class="ptag">MySQL</span><span class="ptag">HTML</span><span class="ptag">CSS</span></div>
+        <a class="proj-link" href="#" target="_blank">View Project →</a>
+      </div>
+
     </div>
   </section>
 
-  <hr class="section-rule"/>
+  <hr class="section-rule" />
 
   <!-- EDUCATION -->
   <section id="education">
@@ -222,7 +264,7 @@
       <div class="edu-entry">
         <div class="edu-year">2022</div>
         <div class="edu-right">
-          <div class="edu-degree">High School Bacll</div>
+          <div class="edu-degree">High School Baccalaureate</div>
           <div class="edu-school">Phnom Penh High School — Cambodia</div>
           <div class="edu-desc">Graduated with strong results in Mathematics and Sciences. Computer & Technology Club member.</div>
           <div class="edu-badges"><span class="ebadge">Mathematics</span><span class="ebadge">Computer Club</span></div>
@@ -240,7 +282,7 @@
     </div>
   </section>
 
-  <hr class="section-rule"/>
+  <hr class="section-rule" />
 
   <!-- CONTACT -->
   <section id="contact" class="contact-section">
@@ -251,54 +293,87 @@
         <p>I'm actively seeking a <strong>Frontend Developer Internship</strong>. Motivated, detail-oriented, passionate about clean UI — let's talk!</p>
         <div class="contact-list">
           <a class="contact-item" href="mailto:nang@gmail.com" data-cursor="EMAIL">
-            <div class="c-icon">
-              <i class="fa-solid fa-envelope-circle-check" style="color: rgb(116, 192, 252);"></i>
-            </div>
+            <div class="c-icon"><i class="fa-solid fa-envelope-circle-check" style="color: rgb(116, 192, 252);"></i></div>
             <div class="c-meta"><div class="c-type">Email</div><div class="c-val">nang@gmail.com</div></div>
           </a>
           <a class="contact-item" href="tel:+855012784543" data-cursor="CALL">
-            <div class="c-icon">
-              <i class="fa-solid fa-phone" style="color: rgb(116, 192, 252);"></i>
-            </div>
+            <div class="c-icon"><i class="fa-solid fa-phone" style="color: rgb(116, 192, 252);"></i></div>
             <div class="c-meta"><div class="c-type">Phone</div><div class="c-val">012 784 543</div></div>
           </a>
-          <a class="contact-item" href="https://github.com/kaizen" target="_blank" data-cursor="CODE">
-            <div class="c-icon">
-              <i class="fa-brands fa-github" style="color: rgb(99, 230, 190);"></i>
-            </div>
+          <a class="contact-item" href="https://github.com/nangite" target="_blank" data-cursor="CODE">
+            <div class="c-icon"><i class="fa-brands fa-github" style="color: rgb(99, 230, 190);"></i></div>
             <div class="c-meta"><div class="c-type">GitHub</div><div class="c-val">github.com/nangite</div></div>
           </a>
           <a class="contact-item" href="#" data-cursor="CONNECT">
-            <div class="c-icon">
-              <i class="fa-brands fa-linkedin-in" style="color: rgb(177, 151, 252);"></i>
-            </div>
+            <div class="c-icon"><i class="fa-brands fa-linkedin-in" style="color: rgb(177, 151, 252);"></i></div>
             <div class="c-meta"><div class="c-type">LinkedIn</div><div class="c-val">linkedin.com/in/nang</div></div>
           </a>
-          <a class="contact-item" href="#" data-cursor="">
-            <div class="c-icon">
-              <i class="fa-solid fa-location-arrow" style="color: rgb(0, 84, 153);"></i>
-            </div>
+          <a class="contact-item" href="#">
+            <div class="c-icon"><i class="fa-solid fa-location-dot" style="color: rgb(116, 192, 252);"></i></div>
             <div class="c-meta"><div class="c-type">Location</div><div class="c-val">Phnom Penh, Cambodia 🇰🇭</div></div>
           </a>
         </div>
       </div>
       <div class="cform">
-        <input class="cinput" type="text" placeholder="Your Name"/>
-        <input class="cinput" type="text" placeholder="Company / Organization"/>
-        <input class="cinput" type="email" placeholder="Your Email"/>
-        <textarea class="ctextarea" placeholder="Your message..."></textarea>
-        <button class="csubmit" data-cursor="SEND ↗">Send Message ↗</button>
+        <input class="cinput" id="inp-name"    type="text"  placeholder="Your Name" />
+        <input class="cinput" id="inp-company" type="text"  placeholder="Company / Organization" />
+        <input class="cinput" id="inp-email"   type="email" placeholder="Your Email" />
+        <textarea class="ctextarea" id="inp-message" placeholder="Your message..."></textarea>
+        <button class="csubmit" id="sendBtn" data-cursor="SEND ↗">Send Message ↗</button>
       </div>
     </div>
   </section>
 
   <footer>
-    <span>© 2024 <strong>Nang Coding</strong> — Frontend Developer</span>
-    <span>HTML · CSS · JS · 🇰🇭 Phnom Penh</span>
+    <span>© 2025 <strong>Nang Coding</strong> — Frontend Developer</span>
+    <span>HTML · CSS · JS · PHP · 🇰🇭 Phnom Penh</span>
   </footer>
 
+  <!-- ✅ Scripts at bottom -->
   <script src="js/cursor.js"></script>
   <script src="js/scroll.js"></script>
   <script src="js/animations.js"></script>
+
+  <!-- ✅ EmailJS at bottom so DOM is ready -->
+  <script>
+    emailjs.init("YOUR_PUBLIC_KEY");
+
+    document.getElementById('sendBtn').addEventListener('click', async () => {
+      const btn     = document.getElementById('sendBtn');
+      const name    = document.getElementById('inp-name').value.trim();
+      const company = document.getElementById('inp-company').value.trim();
+      const email   = document.getElementById('inp-email').value.trim();
+      const message = document.getElementById('inp-message').value.trim();
+
+      if (!name || !email || !message) {
+        alert('សូមបំពេញ Name, Email, និង Message!');
+        return;
+      }
+
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        await emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+          from_name: name,
+          company:   company || 'N/A',
+          reply_to:  email,
+          message:   message,
+        });
+        btn.textContent = '✓ Message Sent!';
+        btn.style.background = 'linear-gradient(135deg, #68D391, #38A169)';
+        document.getElementById('inp-name').value    = '';
+        document.getElementById('inp-company').value = '';
+        document.getElementById('inp-email').value   = '';
+        document.getElementById('inp-message').value = '';
+      } catch (err) {
+        console.error('EmailJS error:', err);
+        btn.textContent = 'Send Message ↗';
+        btn.disabled = false;
+        alert('Failed to send. Please email me directly at nang@gmail.com');
+      }
+    });
+  </script>
+
 </body>
 </html>
