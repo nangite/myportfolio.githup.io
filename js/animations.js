@@ -42,20 +42,26 @@ const activeObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 sections.forEach((s) => activeObs.observe(s));
 
-// ── Theme Toggle (dark ↔ light) ──
+// ── Theme Toggle — dark ↔ light ──
+//  dark  → fa-moon (shown when in dark mode, click to go light)
+//  light → fa-sun  (shown when in light mode, click to go dark)
+
 const darkToggle = document.getElementById('darkToggle');
 const toggleIcon = document.getElementById('toggleIcon');
 
-// Default is dark — toggle adds .light class
+function applyTheme(theme) {
+  document.body.classList.toggle('light', theme === 'light');
+  toggleIcon.innerHTML = theme === 'light'
+    ? '<i class="fa-regular fa-lightbulb"  title="Light mode"></i>'
+    : '<i class="fa-solid fa-moon" title="Dark mode"></i>';
+  darkToggle.setAttribute('aria-label', theme === 'light' ? 'Light mode' : 'Dark mode');
+  localStorage.setItem('theme', theme);
+}
+
 darkToggle.addEventListener('click', () => {
-  document.body.classList.toggle('light');
   const isLight = document.body.classList.contains('light');
-  toggleIcon.textContent = isLight ? '🌙' : '☀️';
-  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  applyTheme(isLight ? 'dark' : 'light');
 });
 
-// Load saved theme
-if (localStorage.getItem('theme') === 'light') {
-  document.body.classList.add('light');
-  toggleIcon.textContent = '🌙';
-}
+// Load saved theme on page load
+applyTheme(localStorage.getItem('theme') || 'dark');
