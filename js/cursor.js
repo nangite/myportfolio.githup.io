@@ -1,9 +1,10 @@
-// Remove all custom cursor — use default browser cursor
-// Only keep: label on hover + ripple on click
+/* ============================================
+   cursor.js — Clean version, links work properly
+   ============================================ */
 
 const curLabel = document.getElementById('curLabel');
 
-// Label on data-cursor elements
+// ── Cursor label on data-cursor elements ──
 document.querySelectorAll('[data-cursor]').forEach((el) => {
   el.addEventListener('mouseenter', () => {
     curLabel.textContent = el.getAttribute('data-cursor');
@@ -17,12 +18,14 @@ document.querySelectorAll('[data-cursor]').forEach((el) => {
   });
 });
 
-// Simple ripple on click
+// ── Ripple on click — skip links so they open normally ──
 document.addEventListener('click', (e) => {
+  if (e.target.closest('a')) return; // ✅ let links work!
+
   const ripple = document.createElement('div');
   ripple.className = 'click-ripple';
   ripple.style.left = e.clientX + 'px';
   ripple.style.top  = e.clientY + 'px';
   document.body.appendChild(ripple);
-  setTimeout(() => ripple.remove(), 500);
+  setTimeout(() => ripple.remove(), 600);
 });
