@@ -41,9 +41,11 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
-a   { text-decoration: none; color: inherit; cursor: none; }
+a { text-decoration: none; color: inherit; cursor: pointer; }
 ul  { list-style: none; }
-button, input, textarea { font: inherit; border: none; background: none; outline: none; cursor: none; }
+button, input, textarea { font: inherit; border: none; background: none; outline: none; }
+input, textarea { cursor: text; }
+button { cursor: pointer; }
 table { border-collapse: collapse; width: 100%; }
 
 /* ── 03. BACKGROUND ── */
@@ -191,10 +193,41 @@ nav {
   width: 36px; height: 36px; border-radius: 50%;
   background: rgba(99,179,237,0.06); border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.9rem;
+  font-size: 1rem;
   transition: all 0.25s var(--ease);
+  cursor: pointer;
 }
-.dark-toggle:hover { border-color: var(--neon); background: rgba(99,179,237,0.12); transform: rotate(20deg); box-shadow: var(--glow); }
+.dark-toggle:hover {
+  border-color: var(--neon);
+  background: rgba(99,179,237,0.12);
+  transform: rotate(20deg);
+  box-shadow: var(--glow);
+}
+
+/* Icon colors per theme */
+/* Dark mode — moon → blue neon */
+.dark-toggle #toggleIcon i { color: var(--neon); }
+
+/* Light mode — sun → amber */
+body.light .dark-toggle #toggleIcon i { color: var(--neon2); }
+
+/* Tooltip showing current theme name */
+.dark-toggle[aria-label]::after {
+  content: attr(aria-label);
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  color: var(--text-dim);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.dark-toggle:hover[aria-label]::after { opacity: 1; }
 .nav-cta {
   font-family: var(--mono); font-size: 0.68rem; font-weight: 600;
   letter-spacing: 0.1em; text-transform: uppercase;
@@ -458,11 +491,34 @@ nav {
   padding: 0.22rem 0.55rem; border-radius: 4px;
   border: 1px solid rgba(99,179,237,0.15); letter-spacing: 0.06em;
 }
+/* ── PROJECT BUTTON ── */
 .proj-link {
-  display: inline-flex; align-items: center; gap: 0.4rem;
-  font-family: var(--mono); font-size: 0.68rem; font-weight: 600;
-  color: var(--neon); margin-top: 1rem; letter-spacing: 0.08em;
-  transition: gap 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bg) !important;
+  background: var(--neon);
+  border: 1px solid var(--neon);
+  transition: all 0.25s var(--ease);
+  position: relative;
+  z-index: 2;
+  cursor: pointer !important;
+}
+.proj-link:hover {
+  background: transparent;
+  color: var(--neon) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--glow);
+  gap: 0.7rem;
+
 }
 .proj-link:hover { gap: 0.7rem; }
 
